@@ -220,7 +220,7 @@ func (c backhaulB5Collector) Collect(ch chan<- prometheus.Metric) {
 	targets := strings.Split(*snmpTargets, ",")
 	targets = append(targets, c.cfg.Targets...)
 	wg := &sync.WaitGroup{}
-	fmt.Printf("targets:%v\n",targets)
+	
 	for _, target := range targets {
 		if target == "" {
 			continue
