@@ -1,11 +1,11 @@
 package main
 
 import (
-	_"strconv"
+
 	"strings"
 	"sync"
 	"time"
-	"fmt"
+	
 	"github.com/mojodojo101/backhaul_b5_exporter/config"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
