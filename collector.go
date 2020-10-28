@@ -180,7 +180,7 @@ func (c backhaulB5Collector) collectTarget(target string, ch chan<- prometheus.M
 	defer snmp.Conn.Close()
 
 	oids := []string{"1.3.6.1.4.1.43356.2.1.2.1.8.0","1.3.6.1.4.1.43356.2.1.2.7.1.0","1.3.6.1.4.1.43356.2.1.2.7.2.0"}
-	oids = append(oids,"1.3.6.1.4.1.43356.2.1.2.7.3.0","1.3.6.1.4.1.43356.2.1.2.7.4.0","1.3.6.1.4.1.43356.2.1.2.3.4.0","1.3.6.1.4.1.43356.2.1.2.3.3.0","1.3.6.1.4.1.43356.2.1.2.6.7.0") 
+	oids = append(oids,"1.3.6.1.4.1.43356.2.1.2.7.3.0","1.3.6.1.4.1.43356.2.1.2.7.4.0","1.3.6.1.4.1.43356.2.1.2.3.4.0","1.3.6.1.4.1.43356.2.1.2.3.3.0")//,"1.3.6.1.4.1.43356.2.1.2.6.7.0") 
 	result, err2 := snmp.Get(oids)
 	if err2 != nil {
 		log.Infof("Get() err: %v from %s\n", err2, target)
@@ -205,7 +205,7 @@ func (c backhaulB5Collector) collectTarget(target string, ch chan<- prometheus.M
 		case oids[4]:
 			ch <- prometheus.MustNewConstMetric(performanceRxDesc , prometheus.GaugeValue, float64(variable.Value.(int)), target)
 		case oids[5]:
-			ch <- prometheus.MustNewConstMetric(wanUptimeDesc , prometheus.GaugeValue, float64(variable.Value.(int)), target)
+			ch <- prometheus.MustNewConstMetric(wanUptimeDesc , prometheus.GaugeValue, float64(variable.Value.(uint32)), target)
 		case oids[6]:
 			ch <- prometheus.MustNewConstMetric(wanStatusDesc, prometheus.GaugeValue, float64(variable.Value.(int)), target)
 		case oids[7]:
